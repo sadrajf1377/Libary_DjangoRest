@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+     #boxes
+     {
+         display: flex;flex-direction: row;
+         height:40vh; width: 60vw;
+         position: fixed;left: 20vw; top:30vh;border: none;
+
+     }
+      #boxes>.box
+      {
+          width: 33.333%;
+         height: 100%; transition: all ease 0.5s;position: relative;overflow-y: hidden;
+
+      }
+      #boxes>.box:hover
+      {
+          width: 40%;
+      }
+
+      .box>div.desc
+      {
+           font-size: calc(1.1vh + 1.1vw); transition: all 1.5s ease;
+          position: absolute;
+          bottom: -50%;
+      }
+      .box:hover>div.desc
+      {
+          opacity: 100%;bottom: 30%;
+      }
+
+    </style>
+</head>
+<body>
+<div id="boxes">
+    <div class="box" style="background-color: lightgreen">
+       <div class="desc">
+           sth is written here
+       </div>
+    </div>
+    <div class="box" style="background-color: lightseagreen">
+          <div class="desc">
+           sth is written here
+       </div>
+    </div>
+    <div class="box" style="background-color: red">
+         <div class="desc">
+           sth is written here
+       </div>
+    </div>
+</div>
+
+</body>
+</html>
