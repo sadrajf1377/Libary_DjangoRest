@@ -10,4 +10,10 @@ class Books_Serializer(serializers.ModelSerializer):
 class Category_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Book_Category
-        fields=['title']
+        fields=['title','id']
+
+
+class Create_Book_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Book
+        fields=['title','book_category','price','author','publish_date']
