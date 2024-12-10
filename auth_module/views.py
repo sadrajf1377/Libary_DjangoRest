@@ -17,12 +17,14 @@ class Log_in(APIView):
 
     permission_classes = [AllowAny]
     def post(self,request):
-        print('i was called')
+        for us in User.objects.all():
+            print('user=',us.username, us.password)
         try:
            username=request.POST.get('username')
            password=request.POST.get('password')
 
            us=User.objects.get(username=username)
+           print(us)
            user=us if us.check_password(password) else None
            print(user)
            if user != None:
@@ -47,6 +49,7 @@ class Who_Am_I(APIView):
 
 
 class Logout(APIView):
+    http_method_names = ['get']
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
     def get(self,request):
