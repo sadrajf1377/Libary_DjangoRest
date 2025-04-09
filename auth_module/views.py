@@ -10,15 +10,14 @@ from rest_framework.views import APIView
 from user_module.models import User
 from rest_framework.authtoken.models import Token
 
+import re
 from .serializers import User_Serializer
 # Create your views here.
-
+password_pattern=r'(?=.*[A-Z].*)(?=.*[0-9].*)(?=.*[!@#$%^&*_.].*)'
 class Log_in(APIView):
 
     permission_classes = [AllowAny]
     def post(self,request):
-        for us in User.objects.all():
-            print('user=',us.username, us.password)
         try:
            username=request.POST.get('username')
            password=request.POST.get('password')
@@ -55,3 +54,18 @@ class Logout(APIView):
     def get(self,request):
         Token.objects.get(user=request.user).delete()
         return Response(data={'message':'user logged out successfully'},status=200)
+
+
+class Sign_Up(APIView):
+    permission_classes = [AllowAny]
+    def post(self,request):
+        print(request.data)
+        data=request.data
+        password=data['password']
+        if not re.match(password_pattern,password):
+            return Response(data={'message':'password must contain at least one uppercase word,one special characte ex:!@.,and one digit'},status=400)
+        user=User(username=data['username'])
+        user.set_password(password)
+        user.save()
+        return Response({'message':'user was created successfully!'},status=201)
+

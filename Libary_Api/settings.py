@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/tmp/django_cache',  # مسیر دلخواه برای ذخیره کش
+        'LOCATION': '/tmp/django_cache'
     }
 }
 
